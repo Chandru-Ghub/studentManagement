@@ -50,7 +50,7 @@ app.get('/getdata',(req,res)=>{
 })
 
 app.get('/getmarks',(req,res)=>{
-    subjectSchema.find().then(data => {
+    subjectSchema.findOne().then(data => {
         res.json(data)
     })
     .catch(err => console.log(err))
