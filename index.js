@@ -59,19 +59,18 @@ app.post('/addmarks',(req,res)=>{
 
 // get students
 
-// app.get('/getdata',(req,res)=>{
-//     var students = []
-//     userSchema.find().then(data => {
-//                 data.map((a)=>{
-//                     subjectSchema.findOne({studentId:a._id})
-//                 .then(result => {
-//                     let output = {student:a,score:result}
-//                     students.push(output)
-//                 })
-//                 .catch(err => console.log(err))
-//                 })
-//         console.log(students)
-//         res.json(students)
-//     })
-//     .catch(err => console.log(err))
-// })
+app.get('/getdata',(req,res)=>{
+    userSchema.find().then(data => {
+        res.json(data)
+    })
+    .catch(err => console.log(err))
+})
+
+// get marks
+
+app.get('/getmarks',(req,res)=>{
+    subjectSchema.find().then(data => {
+        res.json(data)
+    })
+    .catch(err => console.log(err))
+})
