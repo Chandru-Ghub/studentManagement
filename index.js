@@ -31,13 +31,6 @@ app.post('/create',(req,res)=>{
     .catch(err => console.log(err))
 })
 
-app.delete('/delete/:id',(req,res)=>{
-    const id = req.params.id
-    userSchema.findByIdAndDelete(id)
-    .then(a => res.json('student data has been deleted!'))
-    .catch(err => console.log(err))
-})
-
 app.post('/addmarks',(req,res)=>{
     const{english,physics,chemistry,maths,studentId} = req.body
     console.log(req.body)
