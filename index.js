@@ -3,7 +3,6 @@ const cors = require('cors')
 const port = 3400
 const app = express()
 const mongoose = require('mongoose')
-const router = express.Router()
 const userSchema = require('./model/student')
 const subjectSchema = require('./model/subjects')
 app.use(cors())
@@ -21,9 +20,6 @@ mongoose.connect('mongodb+srv://chandruinfo455:NgIcXt5f2klPsILS@cluster0.esdrc8z
 .then(res => console.log('Database connected'))
 .catch(err => console.log(err))
 
-
-// create student detail
-
 app.post('/create',(req,res)=>{
     const {name,email} = req.body
     console.log(req.body)
@@ -35,29 +31,23 @@ app.post('/create',(req,res)=>{
     .catch(err => console.log(err))
 })
 
-// update student
-
 app.delete('/delete/:id',(req,res)=>{
     const id = req.params.id
     userSchema.findByIdAndDelete(id)
     .then(a => res.json('student data has been deleted!'))
     .catch(err => console.log(err))
 })
-// add marks
 
 app.post('/addmarks',(req,res)=>{
     const{english,physics,chemistry,maths,studentId} = req.body
     console.log(req.body)
     subjectSchema.create({physics,maths,chemistry,english,studentId})
-    .then(data =>{
-        console.log(data)
+    .then(data =>{console.log(data) 
         res.json('Marks added sucessfully')
     })
     .catch(err => console.log(err))
 
 })
-
-// get students
 
 app.get('/getdata',(req,res)=>{
     userSchema.find().then(data => {
@@ -65,8 +55,6 @@ app.get('/getdata',(req,res)=>{
     })
     .catch(err => console.log(err))
 })
-
-// get marks
 
 app.get('/getmarks',(req,res)=>{
     subjectSchema.find().then(data => {
